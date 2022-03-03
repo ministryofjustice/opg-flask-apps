@@ -1,0 +1,28 @@
+name: build-images
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-images:
+    name: Build docker images
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+
+      - name: Build api docker image
+        run: |
+          docker build -t flask-api:latest -f rest-api/docker/app/Dockerfile .
+
+      - name: Build front docker image
+        run: |
+          docker build -t flask-front:latest -f front-app/docker/app/Dockerfile .
