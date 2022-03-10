@@ -32,7 +32,8 @@ csp = {
 }
 
 Compress(app)
-Talisman(app, content_security_policy=csp, strict_transport_security_max_age=3600)
+# TODO make force_http only be false if env var passed in to turn it off
+Talisman(app, content_security_policy=csp, strict_transport_security_max_age=3600, force_https=False)
 csrf = CSRFProtect(app)
 
 # set up WTForms and related assets

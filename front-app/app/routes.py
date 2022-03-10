@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, jsonify
 from werkzeug.exceptions import NotFound
 
 from app import app
@@ -17,4 +17,6 @@ def internal_server(error):
 
 @app.route("/healthcheck")
 def healthcheck():
-    return
+    resp = jsonify(health="healthy")
+    resp.status_code = 200
+    return resp
