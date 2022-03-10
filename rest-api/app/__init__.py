@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_compress import Compress
+#from flask_compress import Compress
 #from flask_talisman import Talisman
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
@@ -12,7 +12,7 @@ XRayMiddleware(app, xray_recorder)
 #    "default-src": "'self'"
 #}
 
-Compress(app)
+#Compress(app)
 #Talisman(app, content_security_policy=csp, strict_transport_security_max_age=3600)
 
 from app import routes

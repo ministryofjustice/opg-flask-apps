@@ -1,7 +1,9 @@
-from flask import Flask
+from flask import Flask, jsonify
 
-app = Flask(__name__)
+from app import app
 
 @app.route("/healthcheck")
 def healthcheck():
-    return
+    resp = jsonify(health="healthy")
+    resp.status_code = 200
+    return resp
