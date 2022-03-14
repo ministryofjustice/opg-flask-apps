@@ -37,9 +37,10 @@ jobs:
 
       - name: Test api docker image
         run: |
-          docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
-          curl -s -w "%{http_code}\n" http://localhost:8005/healthcheck -o /dev/null
-          docker stop `docker ps | grep flask-api | awk '{print $NF}'`
+          docker run -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
+          #docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
+          #curl -s -w "%{http_code}\n" http://localhost:8005/healthcheck -o /dev/null
+          #docker stop `docker ps | grep flask-api | awk '{print $NF}'`
 
       - name: Build front docker image
         run: |
