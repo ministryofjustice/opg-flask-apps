@@ -27,6 +27,16 @@ jobs:
         run: |
           docker build -t opg-flask-front:latest -f front-app/docker/app/Dockerfile .
 
+      - name: Extract branch name
+        run: |
+          if [ "${{ github.head_ref }}" == "" ]; then
+            echo BRANCH_NAME=main >> $GITHUB_ENV
+          else
+            echo BRANCH_NAME=${{ github.head_ref }} >> $GITHUB_ENV
+          fi
+        id: extract_branch
+      - uses: unfor19/install-aws-cli-action@v1
+
       - name: Bump version
         id: bump_version
         uses: anothrNick/github-tag-action@1.33.0
