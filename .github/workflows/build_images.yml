@@ -9,7 +9,7 @@ on:
 permissions:
   actions: read
   checks: read
-  contents: none
+  contents: write
   deployments: none
   issues: none
   packages: none
