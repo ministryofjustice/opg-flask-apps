@@ -35,7 +35,7 @@ jobs:
         run: |
           docker build -t opg-flask-api:latest -f rest-api/docker/app/Dockerfile .
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
-          until $(docker ps | grep flask-api)
+          until docker ps | grep -q flask-api
           do
               echo "waiting for container to be up"
               sleep 5
@@ -48,7 +48,7 @@ jobs:
         run: |
           docker build -t opg-flask-front:latest -f front-app/docker/app/Dockerfile .
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-front:latest
-          until $(docker ps | grep flask-api)
+          until docker ps | grep -q flask-api
           do
               echo "waiting for container to be up"
               sleep 5
