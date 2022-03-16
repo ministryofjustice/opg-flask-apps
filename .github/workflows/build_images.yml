@@ -36,6 +36,7 @@ jobs:
           docker build -t opg-flask-api:latest -f rest-api/docker/app/Dockerfile .
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
           docker ps
+          docker ps | grep flask-api
           docker logs `docker ps | grep flask-api | awk '{print $NF}'`
           curl -s -w "%{http_code}\n" http://0.0.0.0:8005/healthcheck -o /dev/null
           docker stop `docker ps | grep flask-api | awk '{print $NF}'`
@@ -44,6 +45,8 @@ jobs:
         run: |
           docker build -t opg-flask-front:latest -f front-app/docker/app/Dockerfile .
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-front:latest
+          docker ps
+          docker ps | grep flask-api
           docker logs `docker ps | grep flask-front | awk '{print $NF}'`
           curl -s -w "%{http_code}\n" http://0.0.0.0:8005/healthcheck -o /dev/null
           docker stop `docker ps | grep flask-front | awk '{print $NF}'`
