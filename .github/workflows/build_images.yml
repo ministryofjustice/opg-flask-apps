@@ -46,7 +46,7 @@ jobs:
           #docker logs `docker ps | grep flask-front | awk '{print $NF}'`
           curl --connect-timeout 10 --retry-connrefused --retry 6 --retry-delay 10 -s -w "%{http_code}\n" http://0.0.0.0:8005/healthcheck -o /dev/null
           docker stop `docker ps | grep flask-front | awk '{print $NF}'`
-
+  
       - name: Extract branch name
         run: |
           if [ "${{ github.head_ref }}" == "" ]; then
