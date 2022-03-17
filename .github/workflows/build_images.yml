@@ -33,7 +33,7 @@ jobs:
 
       - name: Build and test api docker image
         run: |
-          apt-get upgrade curl
+          sudo apt-get upgrade curl
           docker build -t opg-flask-api:latest -f rest-api/docker/app/Dockerfile .
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
           docker ps | grep flask-api
