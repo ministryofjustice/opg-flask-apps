@@ -40,7 +40,8 @@ jobs:
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
           docker ps | grep flask-api
           docker logs `docker ps | grep flask-api | awk '{print $NF}'`
-          curl --connect-timeout 10 --retry-all-errors --retry 6 --retry-delay 10 -s -w "%{http_code}\n" http://0.0.0.0:8005/healthcheck -o /dev/null
+          #curl --connect-timeout 10 --retry-all-errors --retry 6 --retry-delay 10 -s -w "%{http_code}\n" http://0.0.0.0:8005/healthcheck -o /dev/null
+          wait-for-it -s http://0.0.0.0:8005/healthcheck -- echo "healthcheck endpoint reached"
           docker stop `docker ps | grep flask-api | awk '{print $NF}'`
 
       - name: Build and test front docker image
