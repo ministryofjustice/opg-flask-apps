@@ -55,7 +55,7 @@ jobs:
           pip install wait-for-it
           which wait-for-it
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY -f rest-api/docker/app/Dockerfile .
-          docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-api:latest
+          docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" $ECR_REGISTRY/$ECR_REPOSITORY
           wait-for-it -s http://0.0.0.0:8005/healthcheck -- echo "healthcheck endpoint reached"
           docker stop `docker ps | grep flask-api | awk '{print $NF}'`
 
@@ -67,7 +67,7 @@ jobs:
           pip install wait-for-it
           which wait-for-it
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY -f front-app/docker/app/Dockerfile .
-          docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" opg-flask-front:latest
+          docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" $ECR_REGISTRY/$ECR_REPOSITORY
           wait-for-it -s http://0.0.0.0:8005/healthcheck -- echo "healthcheck endpoint reached"
           docker stop `docker ps | grep flask-front | awk '{print $NF}'`
   
