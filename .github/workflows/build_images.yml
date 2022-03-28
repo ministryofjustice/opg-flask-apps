@@ -56,8 +56,8 @@ jobs:
           which wait-for-it
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY -f rest-api/docker/app/Dockerfile .
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" $ECR_REGISTRY/$ECR_REPOSITORY
-          wait-for-it -t 30 -s http://0.0.0.0:8005/healthcheck --echo "healthcheck endpoint reached"
-          docker stop `docker ps | grep flask-api | awk '{print $NF}'`
+          wait-for-it -t 30 -s http://0.0.0.0:8005/healthcheck -- echo "healthcheck endpoint reached"
+          docker stop `docker ps | grep $ECR_REPOSITORY | awk '{print $NF}'`
 
       - name: Build and test front docker image
         env:
@@ -68,8 +68,8 @@ jobs:
           which wait-for-it
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY -f front-app/docker/app/Dockerfile .
           docker run -d -p 8005:8005 -e "AWS_XRAY_SDK_ENABLED=false" $ECR_REGISTRY/$ECR_REPOSITORY
-          wait-for-it -t 30 -s http://0.0.0.0:8005/healthcheck --echo "healthcheck endpoint reached"
-          docker stop `docker ps | grep flask-front | awk '{print $NF}'`
+          wait-for-it -t 30 -s http://0.0.0.0:8005/healthcheck -- echo "healthcheck endpoint reached"
+          docker stop `docker ps | grep $ECR_REPOSITORY | awk '{print $NF}'`
   
       - name: Extract branch name
         run: |
