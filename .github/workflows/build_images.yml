@@ -104,6 +104,7 @@ jobs:
             # We want all of the tags pushed
             docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
           else
+          # TODO line below gets replaced with commented one below once testing is finished
             docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
             #docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           fi
@@ -120,6 +121,7 @@ jobs:
             # We want all of the tags pushed
             docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
           else
+          # TODO line below gets replaced with commented one below once testing is finished
             docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
             #docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           fi
