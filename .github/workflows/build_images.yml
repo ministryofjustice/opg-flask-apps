@@ -104,7 +104,8 @@ jobs:
             # We want all of the tags pushed
             docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
           else
-            docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+            docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
+            #docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           fi
 
       - name: Push front docker image
@@ -119,6 +120,7 @@ jobs:
             # We want all of the tags pushed
             docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
           else
-            docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+            docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
+            #docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           fi
 
