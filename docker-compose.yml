@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:10.13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: lpadb
+      POSTGRES_USER: lpauser
+      POSTGRES_PASSWORD: lpapass
+
+  rest-api:
+    container_name: rest-api
+    image: rest-api
+    build:
+      context: ./
+      dockerfile: ./rest-api/docker/app/Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      AWS_XRAY_SDK_ENABLED: "false"
+      POSTGRES_HOSTNAME: "postgres"
+      POSTGRES_PORT: "5432"
+      POSTGRES_NAME: "lpadb"
+      POSTGRES_USERNAME: "lpauser"
+      POSTGRES_PASSWORD: "lpapass"
+    ports:
+      - 8005:8005
+
