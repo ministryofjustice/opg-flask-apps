@@ -13,7 +13,7 @@ postgresUrl = 'postgresql://{}:{}@{}/{}'.format(
         os.getenv('POSTGRES_NAME'))
 app.config['SQLALCHEMY_DATABASE_URI'] = postgresUrl
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+app.db = SQLAlchemy(app)
 
 xray_recorder.configure(service='Flask Rest API')
 XRayMiddleware(app, xray_recorder)
