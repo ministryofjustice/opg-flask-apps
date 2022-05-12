@@ -12,7 +12,7 @@ def healthcheck():
     except Exception as e:
         logging.error('Failed to connect: '+ str(e))
         output = str(e)
-        resp = jsonify(health="cannot connect to database")
+        resp = jsonify(health="unhealthy")
         resp.status_code = 500
         return resp
 
