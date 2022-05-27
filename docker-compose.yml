@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: lpauser
       POSTGRES_PASSWORD: lpapass
 
-  rest-api:
+  flask-rest-api:
     container_name: rest-api
     image: rest-api
     build:
