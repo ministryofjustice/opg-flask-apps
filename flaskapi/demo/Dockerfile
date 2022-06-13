@@ -4,7 +4,7 @@ FROM python:3.9-alpine
 # security fix for expat
 RUN apk upgrade expat
 
-RUN apk add build-base curl
+RUN apk add build-base curl libpq-dev
 
 WORKDIR /app
 
