@@ -1,0 +1,40 @@
+name: build-images
+   
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  actions: read
+  checks: read
+  contents: write
+  deployments: none
+  issues: none
+  packages: none
+  pull-requests: write
+  repository-projects: write
+  security-events: none
+  statuses: none
+
+jobs:
+  build-images:
+    name: Build , test and push docker images for flask apps
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+      security-events: write
+  
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+
+      - name: test opgflaskapi library
+        run: |
+          cd flaskapi
+          pip install -e .
+          pip install pytest
+          pytest
+
