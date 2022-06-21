@@ -10,6 +10,13 @@ def test_create_flask_app_with_db():
     response = api.test_client().get("/healthcheck")
     assert response.status_code == 200
 
+def test_create_flask_app_with_broken_db():
+    api = create_flask_app("bob", 'postgres://unreachable')
+    assert isinstance(api, Flask)
+
+    response = api.test_client().get("/healthcheck")
+    assert response.status_code == 500
+
 def test_create_flask_app_without_db():
     api = create_flask_app("bob", None)
     assert isinstance(api, Flask)
