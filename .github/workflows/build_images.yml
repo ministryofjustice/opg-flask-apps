@@ -35,6 +35,7 @@ jobs:
         run: |
           cd flaskapi
           pip install -e .
-          pip install pytest
-          pytest
+          cd ..
+          pip install pytest pytest-cov
+          pytest --cov=flaskapi flaskapi/tests
 
