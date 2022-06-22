@@ -1,4 +1,4 @@
-name: build-images
+name: install-and-test
    
 on:
   push:
@@ -19,8 +19,8 @@ permissions:
   statuses: none
 
 jobs:
-  build-images:
-    name: Build , test and push docker images for flask apps
+  install-and-test:
+    name: Install and test flaskapi library 
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -31,7 +31,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v2
 
-      - name: test opgflaskapi library
+      - name: Install and test opgflaskapi library
         run: |
           cd flaskapi
           pip install -e .
