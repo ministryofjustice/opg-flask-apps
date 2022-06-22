@@ -1,7 +1,7 @@
 # opg-flask-apps
 Development repository: Managed by opg-org-infra &amp; Terraform
 
-opg-flask-apps provides easily extendable base [Flask](https://flask.palletsprojects.com/en/2.1.x/) libraries, configured in a specific way for use at OPG. There is currently just an api library. A forms library using Jinja templates, is to follow shortly. The api library includes database connections (postgres supported so far), basic healthcheck, AWS xray, and will soon include authentication. The intended use is to have endpoints plugged in. (See [opg feedback repo](https://github.com/ministryofjustice/opg-feedback) for an example). There is a demo folder with an example of how to use this library within docker
+opg-flask-apps provides easily extendable base [Flask](https://flask.palletsprojects.com/en/2.1.x/) libraries, configured in a specific way for use at OPG. There is currently just an api library. A forms library using Jinja templates, is to follow shortly. The api library includes database connections (postgres supported so far), basic healthcheck, AWS xray, and will soon include authentication. The intended use is to have endpoints plugged in. (See [opg feedback repo](https://github.com/ministryofjustice/opg-feedback) for an example). There is a demo folder with an example of how to use this library within docker.
 
 ## Installation
  
