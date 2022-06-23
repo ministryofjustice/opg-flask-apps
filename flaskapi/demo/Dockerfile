@@ -12,7 +12,6 @@ COPY opgflaskapi /app/opgflaskapi/
 COPY setup.py /app/
 COPY demo/demoapi.py /app/
 
-#RUN pip install -r requirements.txt -  TODO reinstate this with only gunicorn in it
 RUN pip install gunicorn
 
 RUN python setup.py build && python setup.py install
