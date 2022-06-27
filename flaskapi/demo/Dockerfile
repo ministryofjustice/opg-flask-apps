@@ -4,7 +4,7 @@ FROM python:3.9-alpine
 # security fix for expat
 RUN apk upgrade expat
 
-RUN apk add build-base curl libpq-dev
+RUN apk add build-base libpq-dev
 
 WORKDIR /app
 
@@ -15,6 +15,8 @@ COPY demo/demoapi.py /app/
 RUN pip install gunicorn
 
 RUN python setup.py build && python setup.py install
+
+RUN apk del build-base 
 
 EXPOSE 8005
 CMD ["gunicorn", "demoapi:api", "--bind", "0.0.0.0:8005", "--log-file", "-"]
