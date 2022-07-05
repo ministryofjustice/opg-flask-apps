@@ -12,9 +12,7 @@ postgres_uri = "postgresql://{}:{}@{}/{}".format(
 
 class Database:
     def __init__(self, database_uri):
-        self.engine = create_engine(
-            database_uri, echo=True, connect_args={"check_same_thread": False}
-        )
+        self.engine = create_engine(database_uri, echo=True)
         self.sessionClass = sessionmaker(bind=self.engine)
 
     def query(self, *args, **kwargs):
