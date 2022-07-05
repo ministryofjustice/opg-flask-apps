@@ -9,11 +9,9 @@ healthcheck_blueprint = Blueprint("healthcheck_blueprint", __name__)
 @healthcheck_blueprint.route("/healthcheck")
 def healthcheck():
     # if this app has a db, check db,  if not just return healthy
-    # print(dir(current_app.database))
     if hasattr(current_app, "database"):
         try:
-            result = current_app.database.healthcheck()
-            print(dir(result))
+            current_app.database.raw_query("SELECT 1")
         except Exception as e:
             logging.error("Failed to connect: " + str(e))
             output = str(e)

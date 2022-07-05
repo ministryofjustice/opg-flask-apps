@@ -10,8 +10,6 @@ def create_flask_app(name: str, database_uri: str = None) -> Flask:
     if database_uri is not None:
         app.database = Database(database_uri)
 
-    # print(dir(app.database))
-
     app.register_blueprint(healthcheck_blueprint)
 
     xray_recorder.configure(service="Flask Rest API")
