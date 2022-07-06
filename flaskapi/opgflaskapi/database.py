@@ -11,7 +11,7 @@ postgres_uri = "postgresql://{}:{}@{}/{}".format(
 
 
 class Database:
-    def __init__(self, database_uri, connect_args={}):
+    def __init__(self, database_uri: str, connect_args={}):
         self.engine = create_engine(database_uri, echo=True)
         self.sessionClass = sessionmaker(bind=self.engine)
 
@@ -28,7 +28,7 @@ class Database:
         session.add(obj)
         return session.commit()
 
-    def delete(self, modelClass, id):
+    def delete(self, modelClass, id: str):
         session = self.sessionClass()
         obj = session.query(modelClass).filter(modelClass.id == id).first()
         session.delete(obj)

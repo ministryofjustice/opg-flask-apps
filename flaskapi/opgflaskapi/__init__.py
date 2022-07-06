@@ -5,10 +5,10 @@ from .healthcheck_blueprint import healthcheck_blueprint
 from .database import Database
 
 
-def create_flask_app(name: str, database_uri: str = None) -> Flask:
+def create_flask_app(name: str, database_uri: str = None, connect_args={}) -> Flask:
     app = Flask(name)
     if database_uri is not None:
-        app.database = Database(database_uri)
+        app.database = Database(database_uri, connect_args)
 
     app.register_blueprint(healthcheck_blueprint)
 
