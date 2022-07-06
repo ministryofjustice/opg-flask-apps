@@ -11,7 +11,7 @@ postgres_uri = "postgresql://{}:{}@{}/{}".format(
 
 
 class Database:
-    def __init__(self, database_uri):
+    def __init__(self, database_uri, connect_args={}):
         self.engine = create_engine(database_uri, echo=True)
         self.sessionClass = sessionmaker(bind=self.engine)
 
