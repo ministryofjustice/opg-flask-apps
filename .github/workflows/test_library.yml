@@ -1,0 +1,41 @@
+name: install-and-test
+   
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  actions: read
+  checks: read
+  contents: write
+  deployments: none
+  issues: none
+  packages: none
+  pull-requests: write
+  repository-projects: write
+  security-events: none
+  statuses: none
+
+jobs:
+  install-and-test:
+    name: Install and test flaskapi library 
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+      security-events: write
+  
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+
+      - name: Install and test opgflaskapi library
+        run: |
+          cd flaskapi
+          pip install -e .
+          cd ..
+          pip install pytest pytest-cov
+          pytest --cov=flaskapi flaskapi/tests
+
