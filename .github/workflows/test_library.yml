@@ -1,5 +1,5 @@
 name: install-and-test
-   
+
 on:
   push:
     branches:
@@ -20,13 +20,13 @@ permissions:
 
 jobs:
   install-and-test:
-    name: Install and test flaskapi library 
+    name: Install and test flaskapi library
     runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: write
       security-events: write
-  
+
     steps:
       - name: Clone repo
         uses: actions/checkout@v2
@@ -39,3 +39,8 @@ jobs:
           pip install pytest pytest-cov
           pytest --cov=flaskapi flaskapi/tests
 
+      - name: Install and test opgflaskfront app
+        run: |
+          cd flaskfront
+          pip install pytest pytest-cov
+          pytest --cov=flaskfront flaskfront/tests
