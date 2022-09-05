@@ -13,9 +13,9 @@
 
 {% block header %}
   {{ govukHeader({
-    'homepageUrl': url_for('index'),
+    'homepageUrl': url_for('home_blueprint.home'),
     'serviceName': "Make a lasting power of attorney",
-    'serviceUrl': url_for('index')
+    'serviceUrl': url_for('home_blueprint.home')
   }) }}
 {% endblock %}
 
