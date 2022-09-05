@@ -9,8 +9,6 @@ from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 from .home_blueprint import home_blueprint
 
-# from .feedbackfront_blueprint import feedbackfront_blueprint
-
 
 def create_flask_app(name: str) -> Flask:
 
@@ -36,7 +34,12 @@ def create_flask_app(name: str) -> Flask:
     csp = {"default-src": "'self'"}
 
     Compress(app)
-    # Talisman(app, content_security_policy=csp, strict_transport_security_max_age=3600)
+    Talisman(
+        app,
+        content_security_policy=csp,
+        strict_transport_security_max_age=3600,
+        force_https=False,
+    )
     csrf = CSRFProtect(app)
 
     # set up WTForms and related assets
@@ -47,7 +50,6 @@ def create_flask_app(name: str) -> Flask:
     assets.register("js", js)
 
     app.register_blueprint(home_blueprint)
-    # app.register_blueprint(feedbackfront_blueprint)
 
     app.register_error_handler(404, not_found)
     app.register_error_handler(500, internal_server_error)
