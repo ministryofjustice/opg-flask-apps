@@ -8,6 +8,3 @@ def test_create_flask_app():
 
     response = app.test_client().get("/")
     assert response.status_code == 200
-
-    response = app.test_client().get("/completed-feedback")
-    assert response.status_code == 200
