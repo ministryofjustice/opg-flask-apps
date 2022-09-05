@@ -31,11 +31,18 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v2
 
-      - name: Install and test opgflaskapi library and opgflaskfront
+      - name: Install and test opgflaskapi library
         run: |
           cd flaskapi
           pip install -e .
           cd ..
           pip install pytest pytest-cov
           pytest --cov=flaskapi flaskapi/tests
+
+      - name: Install and test opgflaskfront library
+        run: |
+          cd flaskfront
+          pip install -e .
+          cd ..
+          pip install pytest pytest-cov
           pytest --cov=flaskfront flaskfront/tests
