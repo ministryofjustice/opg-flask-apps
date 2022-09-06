@@ -17,10 +17,3 @@ setup(
     ],
     packages=["opgflaskfront"],
 )
-
-# brotli==1.0.9
-# click==7.1.2
-# itsdangerous==2.0.0
-# markupsafe==2.0.0
-# python-dotenv==0.15.0
-# six==1.16.0
