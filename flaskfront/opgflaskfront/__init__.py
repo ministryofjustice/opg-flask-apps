@@ -13,8 +13,8 @@ from .home_blueprint import home_blueprint
 def create_flask_app(name: str) -> Flask:
 
     app = Flask(__name__, static_url_path="/assets")
-    #    xray_recorder.configure(service=f"{name} Flask Front API")
-    #    XRayMiddleware(app, xray_recorder)
+    xray_recorder.configure(service=f"{name} Flask Front API")
+    XRayMiddleware(app, xray_recorder)
 
     app.jinja_loader = ChoiceLoader(
         [
