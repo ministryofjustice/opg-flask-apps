@@ -10,7 +10,7 @@ from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 from .home_blueprint import home_blueprint
 
 
-def create_flask_app(name: str) -> Flask:
+def create_flask_app(name: str, force_https=True) -> Flask:
 
     app = Flask(__name__, static_url_path="/assets")
     xray_recorder.configure(service=f"{name} Flask Front API")
@@ -38,7 +38,7 @@ def create_flask_app(name: str) -> Flask:
         app,
         content_security_policy=csp,
         strict_transport_security_max_age=3600,
-        force_https=False,
+        force_https=force_https,
     )
     csrf = CSRFProtect(app)
 
