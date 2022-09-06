@@ -8,6 +8,7 @@ from jinja2 import ChoiceLoader, PackageLoader, PrefixLoader
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 from .home_blueprint import home_blueprint
+from .healthcheck_blueprint import healthcheck_blueprint
 
 
 def create_flask_app(name: str, force_https=True) -> Flask:
@@ -50,6 +51,7 @@ def create_flask_app(name: str, force_https=True) -> Flask:
     assets.register("js", js)
 
     app.register_blueprint(home_blueprint)
+    app.register_blueprint(healthcheck_blueprint)
 
     app.register_error_handler(404, not_found)
     app.register_error_handler(500, internal_server_error)
