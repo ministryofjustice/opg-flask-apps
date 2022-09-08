@@ -4,14 +4,16 @@ from flask_compress import Compress
 from flask_talisman import Talisman
 from flask_wtf.csrf import CSRFProtect
 from govuk_frontend_wtf.main import WTFormsHelpers
-from jinja2 import ChoiceLoader, PackageLoader, PrefixLoader
+from jinja2 import ChoiceLoader, PackageLoader, PrefixLoader, FileSystemLoader
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 from .home_blueprint import home_blueprint
 from .healthcheck_blueprint import healthcheck_blueprint
 
+# TODO make it so that can pass in extra doct of prefixes from caller of this, and merge that in to loader
 
-def create_flask_app(name: str, force_https=True) -> Flask:
+
+def create_flask_app(name: str, force_https=True, extraPrefixes={}) -> Flask:
 
     app = Flask(__name__, static_url_path="/assets")
     xray_recorder.configure(service=f"{name} Flask Front API")
@@ -19,7 +21,8 @@ def create_flask_app(name: str, force_https=True) -> Flask:
 
     app.jinja_loader = ChoiceLoader(
         [
-            PackageLoader("opgflaskfront"),
+            # have replaced packageloader with filesystem loader as it cannot find package when installed by something else
+            FileSystemLoader("opgflaskfront/templates"),
             PrefixLoader(
                 {
                     "govuk_frontend_jinja": PackageLoader("govuk_frontend_jinja"),
@@ -60,8 +63,8 @@ def create_flask_app(name: str, force_https=True) -> Flask:
 
 
 def not_found(error):
-    return render_template("404.html"), 404
+    return render_template("opgflaskfront/404.html"), 404
 
 
 def internal_server_error(error):
-    return render_template("500.html"), 500
+    return render_template("opgflaskfront/500.html"), 500
