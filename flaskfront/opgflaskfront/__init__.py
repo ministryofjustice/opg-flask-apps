@@ -24,7 +24,8 @@ def create_flask_app(name: str, force_https=True, extraPrefixes={}) -> Flask:
         [
             # have replaced packageloader with filesystem loader as it cannot find package when installed by something else
             # FileSystemLoader("opgflaskfront/templates"),
-            FileSystemLoader(Path(__file__).parent.joinpath("templates").resolve()),
+            # FileSystemLoader(Path(__file__).parent.joinpath("templates").resolve()),
+            PackageLoader("opgflaskfront"),
             PrefixLoader(
                 {
                     "govuk_frontend_jinja": PackageLoader("govuk_frontend_jinja"),
