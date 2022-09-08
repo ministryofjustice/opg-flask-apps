@@ -16,4 +16,5 @@ setup(
         "flask-wtf>=1.0.0",
     ],
     packages=["opgflaskfront"],
+    include_package_data=True,
 )
