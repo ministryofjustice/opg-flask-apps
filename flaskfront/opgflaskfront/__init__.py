@@ -14,17 +14,14 @@ from .healthcheck_blueprint import healthcheck_blueprint
 # TODO make it so that can pass in extra doct of prefixes from caller of this, and merge that in to loader
 
 
-def create_flask_app(name: str, force_https=True, extraPrefixes={}) -> Flask:
+def create_flask_app(name: str, force_https=True, loaders=[]) -> Flask:
 
     app = Flask(__name__, static_url_path="/assets")
     xray_recorder.configure(service=f"{name} Flask Front API")
     XRayMiddleware(app, xray_recorder)
 
-    app.jinja_loader = ChoiceLoader(
+    loaders.extend(
         [
-            # have replaced packageloader with filesystem loader as it cannot find package when installed by something else
-            # FileSystemLoader("opgflaskfront/templates"),
-            # FileSystemLoader(Path(__file__).parent.joinpath("templates").resolve()),
             PackageLoader("opgflaskfront"),
             PrefixLoader(
                 {
@@ -34,6 +31,7 @@ def create_flask_app(name: str, force_https=True, extraPrefixes={}) -> Flask:
             ),
         ]
     )
+    app.jinja_loader = ChoiceLoader(loaders)
 
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
