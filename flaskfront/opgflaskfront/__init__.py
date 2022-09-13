@@ -11,8 +11,6 @@ from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 from .home_blueprint import home_blueprint
 from .healthcheck_blueprint import healthcheck_blueprint
 
-# TODO make it so that can pass in extra doct of prefixes from caller of this, and merge that in to loader
-
 
 def create_flask_app(name: str, force_https=True, loaders=[]) -> Flask:
 
