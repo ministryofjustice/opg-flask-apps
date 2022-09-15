@@ -13,7 +13,15 @@ from .healthcheck_blueprint import healthcheck_blueprint
 
 
 def create_flask_app(name: str, force_https=True, loaders=[]) -> Flask:
+    """Create a new flask app
 
+    Parameters:
+    force_https (boolean): This tells Talisman to force redirect to https, can be overridden here to turn it off
+    loaders(List): List of loaders to tell Jinja where to look for templates. This allows extra loaders to be added by calling code
+
+    Returns: A Flask app
+
+    """
     app = Flask(__name__, static_url_path="/assets")
     xray_recorder.configure(service=f"{name} Flask Front API")
     XRayMiddleware(app, xray_recorder)
