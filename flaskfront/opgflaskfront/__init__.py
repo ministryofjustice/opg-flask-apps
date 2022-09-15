@@ -4,7 +4,6 @@ from flask_assets import Bundle, Environment
 from flask_compress import Compress
 from flask_talisman import Talisman
 from flask_wtf.csrf import CSRFProtect
-from govuk_frontend_wtf.main import WTFormsHelpers
 from jinja2 import ChoiceLoader, PackageLoader, PrefixLoader, FileSystemLoader
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
@@ -52,9 +51,6 @@ def create_flask_app(name: str, force_https=True, loaders=[]) -> Flask:
         force_https=force_https,
     )
     csrf = CSRFProtect(app)
-
-    # set up WTForms and related assets
-    WTFormsHelpers(app)
 
     assets = Environment(app)
     js = Bundle("src/js/*.js", filters="jsmin", output="dist/js/custom-%(version)s.js")
