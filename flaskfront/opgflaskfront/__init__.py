@@ -31,7 +31,6 @@ def create_flask_app(name: str, force_https=True, loaders=[]) -> Flask:
             PrefixLoader(
                 {
                     "govuk_frontend_jinja": PackageLoader("govuk_frontend_jinja"),
-                    "govuk_frontend_wtf": PackageLoader("govuk_frontend_wtf"),
                 }
             ),
         ]
