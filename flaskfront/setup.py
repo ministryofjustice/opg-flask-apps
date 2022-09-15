@@ -7,7 +7,6 @@ setup(
     install_requires=[
         "aws_xray_sdk>=2.8.0,<3",
         "flask>=2.1.0,<3",
-        "gunicorn>=20.1.0,<21",
         "govuk-frontend-jinja>=2.0.0",
         "flask-assets>=2.0",
         "flask-compress>=1.9.0",
