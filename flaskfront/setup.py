@@ -12,6 +12,12 @@ setup(
         "flask-compress>=1.9.0",
         "flask-talisman>=0.7.0",
     ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "pytest-cov",
+        ],
+    },
     packages=["opgflaskfront"],
     include_package_data=True,
 )
