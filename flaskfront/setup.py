@@ -11,6 +11,7 @@ setup(
         "flask-assets>=2.0",
         "flask-compress>=1.9.0",
         "flask-talisman>=0.7.0",
+        "flask-wtf>=1.0.0",
     ],
     extras_require={
         "dev": [
