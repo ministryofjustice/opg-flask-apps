@@ -12,7 +12,7 @@ def create_flask_app(name: str, database_uri: str = None, connect_args={}) -> Fl
 
     app.register_blueprint(healthcheck_blueprint)
 
-    xray_recorder.configure(service="Flask Rest API")
+    xray_recorder.configure(service=f"{name} Flask Rest API")
     XRayMiddleware(app, xray_recorder)
 
     return app

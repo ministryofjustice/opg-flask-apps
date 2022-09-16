@@ -11,5 +11,11 @@ setup(
         "psycopg2-binary",
         "gunicorn>=20.1.0,<21",
     ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "pytest-cov",
+        ],
+    },
     packages=["opgflaskapi"],
 )
