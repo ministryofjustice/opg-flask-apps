@@ -65,8 +65,8 @@ def create_flask_app(name: str, force_https=True, loaders=[]) -> Flask:
 
 
 def not_found(error):
-    return render_template("opgflaskfront/404.html"), 404
+    return render_template("404.html"), 404
 
 
 def internal_server_error(error):
-    return render_template("opgflaskfront/500.html"), 500
+    return render_template("500.html"), 500
