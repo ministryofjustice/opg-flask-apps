@@ -1,5 +1,9 @@
 from setuptools import setup, find_packages
 
+import subprocess
+
+subprocess.call(["sh", "build.sh"])
+
 setup(
     name="opgflaskfront",
     version="1.0",
