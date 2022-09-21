@@ -1,2 +1,2 @@
 include opgflaskfront/templates/*
-include opgfeedbackfront/static/*
+include opgflaskfront/static/*
