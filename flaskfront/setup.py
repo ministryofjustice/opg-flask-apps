@@ -6,7 +6,7 @@ subprocess.call(["sh", "build.sh"])
 
 setup(
     name="opgflaskfront",
-    version="1.0",
+    version="1.1",
     description="base flask front app",
     install_requires=[
         "aws_xray_sdk>=2.8.0,<3",
